@@ -2,12 +2,16 @@ import React from 'react'
 import Task from './Task'
 
 class TaskList extends React.Component{
-  render(){
-    const task = this.props.tasks.map(task =>
-        <Task task={task}/>
-    )
 
-    const singleTask = <Task/>
+  render(){
+    console.log(this.props.tasks)
+
+    const task = this.props.tasks.map(task =>
+        <Task
+          task={task}
+          updateCurrentTask={this.props.updateCurrentTask}
+        />
+    )
 
     return(
       <div class="column" id="TaskList">
