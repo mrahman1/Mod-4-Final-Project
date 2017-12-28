@@ -3,6 +3,7 @@ import Login from '../components/Login'
 import NewTask from '../components/NewTask'
 import TaskList from '../components/TaskList'
 import ShowCurrentTask from '../components/ShowCurrentTask'
+import Navbar from '../components/Navbar'
 
 
 class ToDoContainer extends React.Component{
@@ -43,12 +44,18 @@ class ToDoContainer extends React.Component{
       .then(res => res.json())
       .then(json => this.setState({tasks: json}))
   }
-  //
-  // updateCurrentTask = (item) => {
+
+  // editCurrentTask = (item) => {
   //   let id = item.id;
-  //   fetch(`http://localhost:3000/tasks/${id}`,{
-  //   method: 'delete'
-  //   })
+  //   const options = {
+  //     headers: {
+  //       "Content-Type": 'application/json',
+  //       "Accept": 'application/json'
+  //     },
+  //     method: 'POST',
+  //     body: JSON.stringify(item)
+  //   }
+  //   fetch(`http://localhost:3000/tasks/${id}`,options)
   //     .then(res => res.json())
   //     .then(json => this.setState({tasks: json}))
   // }
@@ -78,6 +85,7 @@ class ToDoContainer extends React.Component{
     console.log(this.state)
     return(
       <div>
+        <Navbar />
         <div class="ui two column grid">
           <NewTask createTask={this.createTask}/>
           {

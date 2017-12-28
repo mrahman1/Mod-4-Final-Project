@@ -1,26 +1,48 @@
 import React from 'react'
+import EditTaskForm from './EditTaskForm'
 
-const ShowCurrentTask = (props) => {
+class ShowCurrentTask extends React.Component {
 
-  let handleShowAllClick = (event) => {
-    return props.clearCurrentTask()
+  state = {
+    editTask: false
   }
 
-  let currentItem = props.currentTask
-
-  let handleDeleteClick = (event) => {
-    props.deleteCurrentTask(currentItem),
-    props.clearCurrentTask()
+  handleShowAllClick = (event) => {
+    this.props.clearCurrentTask()
   }
 
-  return (
-    <div>
-      <h1> {props.currentTask.item} </h1>
-      <h2> {props.currentTask.priority} </h2>
-      <button onClick = {handleShowAllClick}> Show All </button>
-      <button onClick = {handleDeleteClick}> Delete </button>
-    </div>
-  )
+  handleDeleteClick = (event) => {
+    this.props.deleteCurrentTask(this.props.currentTask),
+    this.props.clearCurrentTask()
+  }
+
+  handleEditClick = (event) => {
+    this.setState({editTask: !this.state.editTask})
+  }
+  //
+  // {
+  //   this.state.currentTask ?
+  //   <ShowCurrentTask
+  //     currentTask = {this.state.currentTask}
+  //     clearCurrentTask = {this.clearCurrentTask}
+  //     deleteCurrentTask = {this.deleteCurrentTask}
+  //   /> :
+  //   <TaskList
+  //     tasks={this.state.tasks}
+  //     updateCurrentTask={this.updateCurrentTask}
+  //   />
+
+    render(){
+      console.log(this.state)
+      return (
+        <div>
+          <button onClick = {this.handleShowAllClick}> Show All </button>
+          <button onClick = {this.handleDeleteClick}> Delete </button>
+          <p onClick = {this.handleEditClick}> {this.props.currentTask.item} </p>
+          {this.state.editTask ? <EditTaskForm /> : null}
+        </div>
+      )
+    }
 }
 
 export default ShowCurrentTask;
