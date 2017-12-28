@@ -10,10 +10,6 @@ class Task extends React.Component{
     this.setState({clicked: !this.state.clicked})
   }
 
-  // handleTaskClick = () => {
-  //
-  // }
-
   render(){
     return <li onClick = {this.handleClicked}> {this.props.task.item} </li>
   }

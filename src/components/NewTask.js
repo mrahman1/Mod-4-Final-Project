@@ -2,7 +2,7 @@ import React from 'react'
 
 class NewTask extends React.Component{
   state = {
-    item: "read",
+    item: "",
     user_id: 1
   }
 

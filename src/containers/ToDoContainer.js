@@ -5,7 +5,6 @@ import TaskList from '../components/TaskList'
 import ShowCurrentTask from '../components/ShowCurrentTask'
 import Navbar from '../components/Navbar'
 
-
 class ToDoContainer extends React.Component{
   state = {
     currentUser: null,
@@ -45,20 +44,27 @@ class ToDoContainer extends React.Component{
       .then(json => this.setState({tasks: json}))
   }
 
-  // editCurrentTask = (item) => {
-  //   let id = item.id;
-  //   const options = {
-  //     headers: {
-  //       "Content-Type": 'application/json',
-  //       "Accept": 'application/json'
-  //     },
-  //     method: 'POST',
-  //     body: JSON.stringify(item)
-  //   }
-  //   fetch(`http://localhost:3000/tasks/${id}`,options)
-  //     .then(res => res.json())
-  //     .then(json => this.setState({tasks: json}))
-  // }
+  editCurrentTask = (task) => {
+    let id = task.id;
+    const options = {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify(task)
+    }
+    fetch(`http://localhost:3000/tasks/${id}`,options)
+      .then(res => res.json())
+      .then(
+        // json => this.setState({currentTask: json}),
+        json => this.setState({
+          tasks: this.getTasks(),
+          currentTask: json
+        })
+      )
+  }
+
 
 
   createTask = (item) => {
@@ -80,7 +86,6 @@ class ToDoContainer extends React.Component{
     this.getTasks()
   }
 
-
   render(){
     console.log(this.state)
     return(
@@ -94,6 +99,7 @@ class ToDoContainer extends React.Component{
               currentTask = {this.state.currentTask}
               clearCurrentTask = {this.clearCurrentTask}
               deleteCurrentTask = {this.deleteCurrentTask}
+              editCurrentTask = {this.editCurrentTask}
             /> :
             <TaskList
               tasks={this.state.tasks}
