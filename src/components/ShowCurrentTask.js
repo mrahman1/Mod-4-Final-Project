@@ -20,25 +20,15 @@ class ShowCurrentTask extends React.Component {
     this.setState({editTask: !this.state.editTask})
   }
 
-  display = () => {
-    if(this.state.editTask){
-      return <EditTaskForm currentTask={this.props.currentTask} editCurrentTask={this.props.editCurrentTask}/>
-    } else {
-      return (
-        <div>
-          <p onClick = {this.handleEditClick}> {this.props.currentTask.item} </p>
-          <button onClick = {this.handleShowAllClick}>Show All</button>
-          <button onClick = {this.handleDeleteClick}> Delete</button>
-        </div>
-      )
-    }
-  }
-
 
     render(){
+      const displayEditForm = this.state.editTask ? <EditTaskForm currentTask={this.props.currentTask} editCurrentTask={this.props.editCurrentTask} editTaskStatus={this.handleEditClick}/> : <p onClick = {this.handleEditClick}> {this.props.currentTask.item} </p>
+
       return (
           <div>
-            {this.display()}
+          <button onClick = {this.handleShowAllClick}>Show All</button>
+          <button onClick = {this.handleDeleteClick}> Delete</button>
+          {displayEditForm}
           </div>
       )
     }

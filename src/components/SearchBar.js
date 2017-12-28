@@ -1,9 +1,18 @@
 import React from 'react'
 
-class SearchBar extend React.Component{
-  render(){
-    return()
-  }
+const SearchBar = (props) => {
+
+const handleChange = (event) => {
+  props.handleSearch(event.target.value)
+}
+
+    return(
+      <input
+        type = "text"
+        placeholder="enter search"
+        onChange = {handleChange}
+      />
+    )
 }
 
 export default SearchBar

@@ -9,7 +9,8 @@ class ToDoContainer extends React.Component{
   state = {
     currentUser: null,
     tasks: [],
-    currentTask: null
+    currentTask: null,
+    searchTerm: null
   }
 
 //user apis
@@ -26,6 +27,9 @@ class ToDoContainer extends React.Component{
       .then(json => this.setState({tasks: json}))
   }
 
+  componentDidMount(){
+    this.getTasks()
+  }
 
   updateCurrentTask = (task) => {
       this.setState({currentTask: task})
@@ -57,7 +61,6 @@ class ToDoContainer extends React.Component{
     fetch(`http://localhost:3000/tasks/${id}`,options)
       .then(res => res.json())
       .then(
-        // json => this.setState({currentTask: json}),
         json => this.setState({
           tasks: this.getTasks(),
           currentTask: json
@@ -81,16 +84,15 @@ class ToDoContainer extends React.Component{
       .then(json => this.setState({tasks: [...this.state.tasks, json]}))
   }
 
-
-  componentDidMount(){
-    this.getTasks()
+  handleSearch = (newSearchTerm) => {
+    this.setState({searchTerm: newSearchTerm})
   }
 
   render(){
     console.log(this.state)
     return(
       <div>
-        <Navbar />
+        <Navbar handleSearch={this.handleSearch}/>
         <div class="ui two column grid">
           <NewTask createTask={this.createTask}/>
           {
