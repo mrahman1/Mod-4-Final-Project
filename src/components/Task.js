@@ -15,7 +15,6 @@ class Task extends React.Component{
   // }
 
   render(){
-    console.log(this.props)
     return <li onClick = {this.handleClicked}> {this.props.task.item} </li>
   }
 }

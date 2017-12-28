@@ -31,9 +31,29 @@ class ToDoContainer extends React.Component{
       this.setState({currentTask: task})
   }
 
-  clearCurrentTask = (event) => {
+  clearCurrentTask = () => {
     this.setState({currentTask: null})
   }
+
+  deleteCurrentTask = (item) => {
+    let id = item.id;
+    fetch(`http://localhost:3000/tasks/${id}`,{
+    method: 'delete'
+    })
+      .then(res => res.json())
+      .then(json => this.setState({tasks: json}))
+  }
+  //
+  // updateCurrentTask = (item) => {
+  //   let id = item.id;
+  //   fetch(`http://localhost:3000/tasks/${id}`,{
+  //   method: 'delete'
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => this.setState({tasks: json}))
+  // }
+
+
   createTask = (item) => {
     const options = {
       headers: {
@@ -41,12 +61,13 @@ class ToDoContainer extends React.Component{
         "Accept": 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify({item: item, user_id: 1})
+      body: JSON.stringify(item)
     }
     fetch('http://localhost:3000/tasks',options)
       .then(res => res.json())
-      .then(console.log)
+      .then(json => this.setState({tasks: [...this.state.tasks, json]}))
   }
+
 
   componentDidMount(){
     this.getTasks()
@@ -56,7 +77,6 @@ class ToDoContainer extends React.Component{
   render(){
     console.log(this.state)
     return(
-
       <div>
         <div class="ui two column grid">
           <NewTask createTask={this.createTask}/>
@@ -65,6 +85,7 @@ class ToDoContainer extends React.Component{
             <ShowCurrentTask
               currentTask = {this.state.currentTask}
               clearCurrentTask = {this.clearCurrentTask}
+              deleteCurrentTask = {this.deleteCurrentTask}
             /> :
             <TaskList
               tasks={this.state.tasks}

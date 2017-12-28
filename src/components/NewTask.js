@@ -3,12 +3,12 @@ import React from 'react'
 class NewTask extends React.Component{
   state = {
     item: "read",
-    user: 1
+    user_id: 1
   }
 
   handleSubmitNewTask= (event) => {
     event.preventDefault()
-    this.props.createTask(this.state.item)
+    this.props.createTask(this.state)
   }
 
   handleItemChange= (event) => {
@@ -16,7 +16,6 @@ class NewTask extends React.Component{
   }
 
   render(){
-    console.log(this.state)
     return(
       <div id="NewTaskForm" class="ui column">
       <h4> Add A New Task Here </h4>

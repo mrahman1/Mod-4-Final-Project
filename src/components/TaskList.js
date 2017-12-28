@@ -4,8 +4,6 @@ import Task from './Task'
 class TaskList extends React.Component{
 
   render(){
-    console.log(this.props.tasks)
-
     const task = this.props.tasks.map(task =>
         <Task
           task={task}
