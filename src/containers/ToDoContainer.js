@@ -2,14 +2,12 @@ import React from 'react'
 import Login from '../components/Login'
 import NewTask from '../components/NewTask'
 import TaskList from '../components/TaskList'
-import ShowCurrentTask from '../components/ShowCurrentTask'
 import Navbar from '../components/Navbar'
 
 class ToDoContainer extends React.Component{
   state = {
     currentUser: null,
     tasks: [],
-    currentTask: null,
     searchTerm: null
   }
 
@@ -31,42 +29,6 @@ class ToDoContainer extends React.Component{
     this.getTasks()
   }
 
-  updateCurrentTask = (task) => {
-      this.setState({currentTask: task})
-  }
-
-  clearCurrentTask = () => {
-    this.setState({currentTask: null})
-  }
-
-  deleteCurrentTask = (item) => {
-    let id = item.id;
-    fetch(`http://localhost:3000/tasks/${id}`,{
-    method: 'delete'
-    })
-      .then(res => res.json())
-      .then(json => this.setState({tasks: json}))
-  }
-
-  editCurrentTask = (task) => {
-    let id = task.id;
-    const options = {
-      headers: {
-        "Content-Type": 'application/json',
-        "Accept": 'application/json'
-      },
-      method: 'PATCH',
-      body: JSON.stringify(task)
-    }
-    fetch(`http://localhost:3000/tasks/${id}`,options)
-      .then(res => res.json())
-      .then(
-        json => this.setState({
-          tasks: this.getTasks(),
-          currentTask: json
-        })
-      )
-  }
 
   createTask = (item) => {
     const options = {
@@ -93,6 +55,36 @@ class ToDoContainer extends React.Component{
     })
   }
 
+//edit task
+  editCurrentTask = (task) => {
+    let id = task.id;
+    const options = {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify(task)
+    }
+    fetch(`http://localhost:3000/tasks/${id}`,options)
+      .then(res => res.json())
+      .then(
+        json => this.setState({
+          tasks: this.getTasks()
+        })
+      )
+  }
+
+  deleteCurrentTask = (item) => {
+    let id = item.id;
+    fetch(`http://localhost:3000/tasks/${id}`,{
+    method: 'delete'
+    })
+      .then(res => res.json())
+      .then(json => this.setState({tasks: json}))
+  }
+
+
   render(){
     let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
 
@@ -106,10 +98,7 @@ class ToDoContainer extends React.Component{
           <div>
               <TaskList
                 tasks={filteredTasks}
-                updateCurrentTask={this.updateCurrentTask}
                 createTask={this.createTask}
-                currentTask = {this.state.currentTask}
-                clearCurrentTask = {this.clearCurrentTask}
                 deleteCurrentTask = {this.deleteCurrentTask}
                 editCurrentTask = {this.editCurrentTask}
               />

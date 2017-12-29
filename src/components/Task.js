@@ -1,32 +1,34 @@
 import React from 'react'
-import ShowCurrentTask from './ShowCurrentTask'
+import EditCurrentTask from './EditCurrentTask'
+import DeleteCurrentTask from './DeleteCurrentTask'
 
 class Task extends React.Component{
   state = {
-    complete: false
+    complete: false,
+    taskSelected: false
   }
 
   handleSelectTaskClick = (event) => {
-    this.props.updateCurrentTask(this.props.task)
-    // this.setState({clicked: !this.state.clicked})
+    this.props.updateDisplay(), this.setState({taskSelected: !this.state.taskSelected})
   }
 
   handleCheckTaskClick= (event) => {
-    //<i class="check circle icon"></i>
     this.setState({complete: !this.state.complete})
   }
 
   render(){
-    console.log(this.props)
     const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> :  <i class="circle thin icon" ></i>
-    const displayCurrentTask = this.props.currentTask? <ShowCurrentTask currentTask = {this.props.currentTask} clearCurrentTask = {this.props.clearCurrentTask} deleteCurrentTask = {this.props.deleteCurrentTask} editCurrentTask = {this.props.editCurrentTask}/> : null
+    const displayCurrentTask = this.state.taskSelected ? <EditCurrentTask task={this.props.task}/> : null
+    const deleteCurrentTask = this.state.taskSelected ? <DeleteCurrentTask/> : null
 
     return (
       <tr>
         <td id= "Complete" onClick={this.handleCheckTaskClick}> {markCompleted} </td>
         <td class="selectable" onClick= {this.handleSelectTaskClick}>{this.props.task.item}</td>
         {displayCurrentTask}
+        {deleteCurrentTask}
       </tr>
+
     )
   }
 }
