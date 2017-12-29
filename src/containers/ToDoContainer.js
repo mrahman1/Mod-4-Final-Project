@@ -114,9 +114,10 @@ class ToDoContainer extends React.Component{
                 editCurrentTask = {this.editCurrentTask}
               /> :
               <TaskList
-                    
+
                 tasks={filteredTasks}
                 updateCurrentTask={this.updateCurrentTask}
+                createTask={this.createTask}
               />
             }
         </div>

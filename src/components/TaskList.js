@@ -7,7 +7,13 @@ class TaskList extends React.Component{
     newTask: false
   }
 
+  handleNewTaskClick = () => {
+    this.setState({newTask: !this.state.newTask})
+  }
+
   render(){
+    console.log(this.state)
+
     const task = this.props.tasks.map(task =>
         <Task
           task={task}
@@ -15,17 +21,18 @@ class TaskList extends React.Component{
         />
     )
 
+    const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.props.createTask}/> : null
+
     return(
-      <div class="ui list">
-      <h2> Today <i class="plus icon"></i> </h2>
-      <NewTask createTask={this.createTask}/>
-        <table class="ui celled table">
+      <div id="TaskList">
+      <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
+      {displayNewTaskForm}
+
+        <table class="ui fixed red table" id="TaskListTable">
           <thead>
             <tr>
-              <th> Task </th>
-              <th> Edit </th>
-              <th> Delete </th>
-              <th> Complete </th>
+              <th class="one wide">Complete</th>
+              <th class="two wide">Task</th>
             </tr>
           </thead>
 
