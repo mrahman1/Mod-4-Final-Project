@@ -17,9 +17,9 @@ class Task extends React.Component{
   }
 
   render(){
-    console.log(this.state)
+    console.log(this.props)
     const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> :  <i class="circle thin icon" ></i>
-    const displayCurrentTask = this.props.currentTask? <td><ShowCurrentTask currentTask = {this.props.currentTask} clearCurrentTask = {this.props.clearCurrentTask} deleteCurrentTask = {this.props.deleteCurrentTask} editCurrentTask = {this.props.editCurrentTask}/> </td> : null
+    const displayCurrentTask = this.props.currentTask? <ShowCurrentTask currentTask = {this.props.currentTask} clearCurrentTask = {this.props.clearCurrentTask} deleteCurrentTask = {this.props.deleteCurrentTask} editCurrentTask = {this.props.editCurrentTask}/> : null
 
     return (
       <tr>
