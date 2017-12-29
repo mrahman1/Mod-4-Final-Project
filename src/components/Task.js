@@ -1,14 +1,14 @@
 import React from 'react'
+import ShowCurrentTask from './ShowCurrentTask'
 
 class Task extends React.Component{
   state = {
-    clicked: false,
     complete: false
   }
 
   handleSelectTaskClick = (event) => {
     this.props.updateCurrentTask(this.props.task)
-    this.setState({clicked: !this.state.clicked})
+    // this.setState({clicked: !this.state.clicked})
   }
 
   handleCheckTaskClick= (event) => {
@@ -17,18 +17,16 @@ class Task extends React.Component{
   }
 
   render(){
+    console.log(this.state)
     const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> :  <i class="circle thin icon" ></i>
+    const displayCurrentTask = this.props.currentTask? <td><ShowCurrentTask currentTask = {this.props.currentTask} clearCurrentTask = {this.props.clearCurrentTask} deleteCurrentTask = {this.props.deleteCurrentTask} editCurrentTask = {this.props.editCurrentTask}/> </td> : null
 
     return (
-      <tr class="two wide">
-
-        <td onClick={this.handleCheckTaskClick}>
-          {markCompleted}
-        </td>
-        <td class="selectable" onClick= {this.handleSelectTaskClick}>
-          {this.props.task.item}</td>
+      <tr>
+        <td id= "Complete" onClick={this.handleCheckTaskClick}> {markCompleted} </td>
+        <td class="selectable" onClick= {this.handleSelectTaskClick}>{this.props.task.item}</td>
+        {displayCurrentTask}
       </tr>
-
     )
   }
 }

@@ -1,17 +1,16 @@
-#TaskList {
-  text-align: center;
-}
-
 #Today {
   text-align: center;
 }
 
 #TaskListTable{
-  text-align: center;
   table-layout: fixed;
   width: 50%;
   margin-left:auto;
   margin-right:auto;
+}
+
+#Complete{
+  text-align: center;
 }
 
 .App {

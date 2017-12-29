@@ -12,12 +12,15 @@ class TaskList extends React.Component{
   }
 
   render(){
-    console.log(this.state)
-
+    // console.log(this.props)
     const task = this.props.tasks.map(task =>
         <Task
           task={task}
           updateCurrentTask={this.props.updateCurrentTask}
+          currentTask = {this.props.currentTask}
+          clearCurrentTask = {this.props.clearCurrentTask}
+          deleteCurrentTask = {this.props.deleteCurrentTask}
+          editCurrentTask = {this.props.editCurrentTask}
         />
     )
 
@@ -30,12 +33,8 @@ class TaskList extends React.Component{
 
         <table class="ui fixed red table" id="TaskListTable">
           <thead>
-            <tr>
-              <th class="one wide">Complete</th>
-              <th class="two wide">Task</th>
-            </tr>
+              {this.props.currentTask ? <tr> <th class="one half wide" id="Complete">Complete</th> <th class="two wide">Task</th><th class="one half wide">Edit</th></tr> : <tr><th class="one half wide" id="Complete">Complete</th><th class="two wide">Task</th></tr>}
           </thead>
-
           <tbody>
             {task}
           </tbody>

@@ -94,7 +94,6 @@ class ToDoContainer extends React.Component{
   }
 
   render(){
-    console.log(this.state)
     let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
 
     return(
@@ -105,19 +104,14 @@ class ToDoContainer extends React.Component{
         />
 
           <div>
-            {
-              this.state.currentTask ?
-              <ShowCurrentTask
+              <TaskList
+                tasks={filteredTasks}
+                updateCurrentTask={this.updateCurrentTask}
+                createTask={this.createTask}
                 currentTask = {this.state.currentTask}
                 clearCurrentTask = {this.clearCurrentTask}
                 deleteCurrentTask = {this.deleteCurrentTask}
                 editCurrentTask = {this.editCurrentTask}
-              /> :
-              <TaskList
-
-                tasks={filteredTasks}
-                updateCurrentTask={this.updateCurrentTask}
-                createTask={this.createTask}
               />
             }
         </div>
