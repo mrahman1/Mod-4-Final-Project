@@ -26,9 +26,9 @@ class ShowCurrentTask extends React.Component {
 
       return (
           <div>
-          <button onClick = {this.handleShowAllClick}>Show All</button>
-          <button onClick = {this.handleDeleteClick}> Delete</button>
-          {displayEditForm}
+            <button onClick = {this.handleShowAllClick}>Show All</button>
+            <button onClick = {this.handleDeleteClick}> Delete</button>
+            {displayEditForm}
           </div>
       )
     }

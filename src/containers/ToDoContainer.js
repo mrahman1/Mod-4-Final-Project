@@ -68,8 +68,6 @@ class ToDoContainer extends React.Component{
       )
   }
 
-
-
   createTask = (item) => {
     const options = {
       headers: {
@@ -84,31 +82,45 @@ class ToDoContainer extends React.Component{
       .then(json => this.setState({tasks: [...this.state.tasks, json]}))
   }
 
+//search & filter
   handleSearch = (newSearchTerm) => {
     this.setState({searchTerm: newSearchTerm})
   }
 
+  handleFilter = () => {
+    return this.state.tasks.filter(task=>{
+      return task.item.includes(this.state.searchTerm)
+    })
+  }
+
   render(){
     console.log(this.state)
+    let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
+
     return(
       <div>
-        <Navbar handleSearch={this.handleSearch}/>
-        <div class="ui two column grid">
-          <NewTask createTask={this.createTask}/>
-          {
-            this.state.currentTask ?
-            <ShowCurrentTask
-              currentTask = {this.state.currentTask}
-              clearCurrentTask = {this.clearCurrentTask}
-              deleteCurrentTask = {this.deleteCurrentTask}
-              editCurrentTask = {this.editCurrentTask}
-            /> :
-            <TaskList
-              tasks={this.state.tasks}
-              updateCurrentTask={this.updateCurrentTask}
-            />
-          }
+        <Navbar
+          handleSearch={this.handleSearch}
+          searchTerm={this.state.searchTerm}
+        />
+
+          <div>
+            {
+              this.state.currentTask ?
+              <ShowCurrentTask
+                currentTask = {this.state.currentTask}
+                clearCurrentTask = {this.clearCurrentTask}
+                deleteCurrentTask = {this.deleteCurrentTask}
+                editCurrentTask = {this.editCurrentTask}
+              /> :
+              <TaskList
+                    
+                tasks={filteredTasks}
+                updateCurrentTask={this.updateCurrentTask}
+              />
+            }
         </div>
+
       </div>
     )
   }

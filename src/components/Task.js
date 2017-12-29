@@ -11,7 +11,15 @@ class Task extends React.Component{
   }
 
   render(){
-    return <li onClick = {this.handleClicked}> {this.props.task.item} </li>
+    return (
+      <tr>
+        <td class="selectable" onClick= {this.handleClicked}>{this.props.task.item}</td>
+        <td class="selectable"> <i class="edit icon"></i> </td>
+        <td class="selectable"> <i class="trash icon"> </i> </td>
+        <td class="selectable"> <i class="check circle icon"></i> </td>
+      </tr>
+
+    )
   }
 }
 

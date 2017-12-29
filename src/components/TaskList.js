@@ -1,7 +1,11 @@
 import React from 'react'
 import Task from './Task'
+import NewTask from './NewTask'
 
 class TaskList extends React.Component{
+  state = {
+    newTask: false
+  }
 
   render(){
     const task = this.props.tasks.map(task =>
@@ -12,11 +16,23 @@ class TaskList extends React.Component{
     )
 
     return(
-      <div class="column" id="TaskList">
-      <h2> Heres a list of fake tasks! </h2>
-        <ul>
-          {task}
-        </ul>
+      <div class="ui list">
+      <h2> Today <i class="plus icon"></i> </h2>
+      <NewTask createTask={this.createTask}/>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th> Task </th>
+              <th> Edit </th>
+              <th> Delete </th>
+              <th> Complete </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {task}
+          </tbody>
+        </table>
       </div>
     )
   }

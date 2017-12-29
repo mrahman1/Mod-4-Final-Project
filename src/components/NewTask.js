@@ -17,7 +17,7 @@ class NewTask extends React.Component{
 
   render(){
     return(
-      <div id="NewTaskForm" class="ui column">
+      <div class="ui form">
       <h4> Add A New Task Here </h4>
         <form onSubmit={this.handleSubmitNewTask}>
           <input
@@ -25,10 +25,6 @@ class NewTask extends React.Component{
             placeholder = "Item"
             value = {this.state.item}
             onChange = {this.handleItemChange}
-          />
-          <input
-            type = "priority"
-            placeholder = "Priority"
           />
           <br/>
           <input

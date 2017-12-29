@@ -26,3 +26,8 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: blue;
+    opacity: 1; /* Firefox */
+}
