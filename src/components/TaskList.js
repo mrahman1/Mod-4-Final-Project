@@ -23,6 +23,7 @@ class TaskList extends React.Component{
           deleteCurrentTask = {this.props.deleteCurrentTask}
           editCurrentTask = {this.props.editCurrentTask}
           setCurrentTask = {this.props.setCurrentTask}
+          clearCurrentTask = {this.props.clearCurrentTask}
         />
     )
 
@@ -32,7 +33,7 @@ class TaskList extends React.Component{
 
         <table class="ui fixed red table" id="TaskListTable">
           <thead>
-              {this.props.currentTask? <tr> <th class="one half wide" id="Complete">Complete</th> <th class="two wide">Task</th><th class="one half wide">Edit</th> <th class="one half wide">Delete</th> <th class="one half wide">Save</th></tr> : <tr><th class="one half wide" id="Complete">Complete</th><th class="two wide">Task</th></tr>}
+              {this.props.currentTask? <tr> <th class="one half wide" id="Complete">Status</th> <th class="two wide">Task</th><th class="one half wide">Edit</th> <th class="one half wide">Delete</th> <th class="one half wide">Save</th></tr> : <tr><th class="one half wide" id="Complete">Complete</th><th class="two wide">Task</th></tr>}
           </thead>
           <tbody>
             {task}

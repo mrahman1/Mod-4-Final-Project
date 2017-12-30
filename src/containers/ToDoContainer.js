@@ -70,11 +70,8 @@ class ToDoContainer extends React.Component{
     }
     fetch(`http://localhost:3000/tasks/${id}`,options)
       .then(res => res.json())
-      .then(
-        json => this.setState({
-          tasks: this.getTasks()
-        })
-      )
+      // .then(json => this.setState({tasks: [...this.state.tasks, json]}))
+      .then(this.getTasks)
   }
 
   deleteCurrentTask = (item) => {
@@ -90,12 +87,16 @@ class ToDoContainer extends React.Component{
     this.setState({currentTask: task})
   }
 
+  clearCurrentTask = () => {
+    this.setState({currentTask: null})
+  }
+
   handleNewTaskClick = () => {
     this.setState({newTask: !this.state.newTask})
   }
 
   render(){
-    console.log(this.state.currentTask)
+    console.log(this.state.tasks)
     let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
     const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask}/> : null
 
@@ -117,6 +118,7 @@ class ToDoContainer extends React.Component{
                 currentTask = {this.state.currentTask}
                 setCurrentTask = {this.setCurrentTask}
                 displayEditCells = {this.displayEditCells}
+                clearCurrentTask = {this.clearCurrentTask}
               />
             }
         </div>
