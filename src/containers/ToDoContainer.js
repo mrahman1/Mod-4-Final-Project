@@ -8,7 +8,9 @@ class ToDoContainer extends React.Component{
   state = {
     currentUser: null,
     tasks: [],
-    searchTerm: null
+    searchTerm: null,
+    currentTask: null,
+    newTask: false,
   }
 
 //user apis
@@ -84,9 +86,18 @@ class ToDoContainer extends React.Component{
       .then(json => this.setState({tasks: json}))
   }
 
+  setCurrentTask = (task) => {
+    this.setState({currentTask: task})
+  }
+
+  handleNewTaskClick = () => {
+    this.setState({newTask: !this.state.newTask})
+  }
 
   render(){
+    console.log(this.state.currentTask)
     let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
+    const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask}/> : null
 
     return(
       <div>
@@ -94,6 +105,8 @@ class ToDoContainer extends React.Component{
           handleSearch={this.handleSearch}
           searchTerm={this.state.searchTerm}
         />
+        <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
+        {displayNewTaskForm}
 
           <div>
               <TaskList
@@ -101,6 +114,9 @@ class ToDoContainer extends React.Component{
                 createTask={this.createTask}
                 deleteCurrentTask = {this.deleteCurrentTask}
                 editCurrentTask = {this.editCurrentTask}
+                currentTask = {this.state.currentTask}
+                setCurrentTask = {this.setCurrentTask}
+                displayEditCells = {this.displayEditCells}
               />
             }
         </div>

@@ -1,34 +1,47 @@
 import React from 'react'
-import EditCurrentTask from './EditCurrentTask'
-import DeleteCurrentTask from './DeleteCurrentTask'
+import ShowCurrentTask from './ShowCurrentTask'
 
 class Task extends React.Component{
   state = {
     complete: false,
-    taskSelected: false
   }
 
   handleSelectTaskClick = (event) => {
-    this.props.updateDisplay(), this.setState({taskSelected: !this.state.taskSelected})
+    this.props.setCurrentTask(this.props.task)
   }
 
   handleCheckTaskClick= (event) => {
     this.setState({complete: !this.state.complete})
   }
 
+  displayEditCells = () => {
+    if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
+      return (<td><i class="edit icon"></i></td>)
+    } else {
+      return null
+    }}
+
+  displayDeleteCells = () => {
+    if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
+      return (<td><i class="trash icon"></i></td>)
+    } else {
+      return null
+    }}
+
+
   render(){
-    const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> :  <i class="circle thin icon" ></i>
-    const displayCurrentTask = this.state.taskSelected ? <EditCurrentTask task={this.props.task}/> : null
-    const deleteCurrentTask = this.state.taskSelected ? <DeleteCurrentTask/> : null
+    // this.editCurrentTask()
+    // console.log(this.props.task.id)
+    // console.log(this.props.currentTask)
+    const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> : <i class="circle thin icon" ></i>
 
     return (
       <tr>
         <td id= "Complete" onClick={this.handleCheckTaskClick}> {markCompleted} </td>
         <td class="selectable" onClick= {this.handleSelectTaskClick}>{this.props.task.item}</td>
-        {displayCurrentTask}
-        {deleteCurrentTask}
+        {this.displayEditCells()}
+        {this.displayDeleteCells()}
       </tr>
-
     )
   }
 }
