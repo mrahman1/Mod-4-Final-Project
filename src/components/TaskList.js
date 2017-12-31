@@ -33,11 +33,7 @@ class TaskList extends React.Component{
 
         <table class="ui fixed red table" id="TaskListTable">
           <thead>
-              <tr>
-                <th class="one half wide" id="Complete">Status</th>
-                <th class="two wide">Task</th>
-                {this.props.currentTask ? <th class="one wide">Delete</th> : null}
-              </tr>
+              {this.props.currentTask? <tr> <th class="one half wide" id="Complete">Status</th> <th class="two wide">Task</th><th class="one half wide">Edit</th> <th class="one half wide">Delete</th> <th class="one half wide">Save</th></tr> : <tr><th class="one half wide" id="Complete">Complete</th><th class="two wide">Task</th></tr>}
           </thead>
           <tbody>
             {task}
@@ -48,4 +44,4 @@ class TaskList extends React.Component{
   }
 }
 
-export default TaskList
+export default TaskList;

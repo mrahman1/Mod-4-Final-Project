@@ -70,15 +70,8 @@ class ToDoContainer extends React.Component{
     }
     fetch(`http://localhost:3000/tasks/${id}`,options)
       .then(res => res.json())
+      // .then(json => this.setState({tasks: [...this.state.tasks, json]}))
       .then(this.getTasks)
-      // .then(json => this.setState({
-      //   tasks: this.updateTasks([...this.state.tasks],this.state.currentTask.id, json)
-      // }))
-  }
-
-  updateTasks = (array, currentValue, newValue) => {
-    array[array.indexOf(currentValue)] = newValue
-    return array
   }
 
   deleteCurrentTask = (item) => {
@@ -102,9 +95,8 @@ class ToDoContainer extends React.Component{
     this.setState({newTask: !this.state.newTask})
   }
 
-
   render(){
-    console.log(this.state)
+    console.log(this.state.tasks)
     let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
     const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask}/> : null
 
@@ -136,4 +128,4 @@ class ToDoContainer extends React.Component{
   }
 }
 
-export default ToDoContainer
+export default ToDoContainer;

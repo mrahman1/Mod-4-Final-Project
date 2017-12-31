@@ -1,10 +1,10 @@
 import React from 'react'
 import DeleteCurrentTask from './DeleteCurrentTask'
-import EditTaskForm from './EditTaskForm'
+import EditCurrentTask from './EditCurrentTask'
 
 class Task extends React.Component{
   state = {
-    complete: false
+    complete: false,
   }
 
   handleSelectTaskClick = (event) => {
@@ -17,11 +17,10 @@ class Task extends React.Component{
 
   displayEditIcon = () => {
     if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
-      return (<EditTaskForm currentTask = {this.props.task} editCurrentTask = {this.props.editCurrentTask} clearCurrentTask={this.props.clearCurrentTask}/>)
+      return (<EditCurrentTask currentTask = {this.props.currentTask} editCurrentTask = {this.props.editCurrentTask}/>)
     } else {
-      return <td class="selectable" onClick= {this.handleSelectTaskClick}>{this.props.task.item}</td>
-    }
-  }
+      return null
+    }}
 
     displayDeleteIcon = () => {
       if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
@@ -30,6 +29,13 @@ class Task extends React.Component{
         return null
       }}
 
+  displaySaveIcon = () => {
+    if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
+      return (<td class="selectable"><i class="save icon"></i></td>)
+    } else {
+      return null
+    }}
+
 
   render(){
     const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> : <i class="circle thin icon" ></i>
@@ -37,8 +43,10 @@ class Task extends React.Component{
     return (
       <tr>
         <td id= "Complete" onClick={this.handleCheckTaskClick}> {markCompleted} </td>
+        <td class="selectable" onClick= {this.handleSelectTaskClick}>{this.props.task.item}</td>
         {this.displayEditIcon()}
         {this.displayDeleteIcon()}
+        {this.displaySaveIcon()}
       </tr>
     )
   }

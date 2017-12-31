@@ -9,8 +9,7 @@ class EditTaskForm extends React.Component {
 
   handleEditTaskSubmit = (event) => {
     event.preventDefault()
-    this.props.editCurrentTask(this.state),
-    this.props.clearCurrentTask()
+    this.props.editCurrentTask(this.state)
   }
 
   handleItemChange = (event) => {
@@ -20,16 +19,14 @@ class EditTaskForm extends React.Component {
   render(){
     console.log(this.state)
     return(
-      <td>
-        <form onSubmit={this.handleEditTaskSubmit}>
-          <input
-            type = "text"
-            placeholder = "update task"
-            value = {this.state.item}
-            onChange = {this.handleItemChange}
-          />
-        </form>
-      </td>
+      <form onSubmit={this.handleEditTaskSubmit}>
+        <input
+          type = "text"
+          placeholder = "update task"
+          value = {this.state.item}
+          onChange = {this.handleItemChange}
+        />
+      </form>
     )
   }
 
