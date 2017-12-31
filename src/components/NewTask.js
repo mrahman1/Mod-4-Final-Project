@@ -17,21 +17,19 @@ class NewTask extends React.Component{
 
   render(){
     return(
-      <div class="ui form">
-      <h4> Add A New Task Here </h4>
-        <form onSubmit={this.handleSubmitNewTask}>
-          <input
-            type = "text"
-            placeholder = "Item"
-            value = {this.state.item}
-            onChange = {this.handleItemChange}
-          />
+        <div class="ui form" id="NewTask">
+          <form onSubmit={this.handleSubmitNewTask}>
+              <div class="ui input">
+                <input
+                type = "text"
+                placeholder = "Item"
+                value = {this.state.item}
+                onChange = {this.handleItemChange}
+              />
+                <input type ="submit" />
+              </div>
+          </form>
           <br/>
-          <input
-            type = "submit"
-            placeholder = "submit"
-          />
-        </form>
       </div>
     )
   }

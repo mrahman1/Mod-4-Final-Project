@@ -24,7 +24,7 @@ class ToDoContainer extends React.Component{
   getTasks = () => {
     fetch ('http://localhost:3000/tasks')
       .then(res => res.json())
-      .then(json => this.setState({tasks: json}))
+      .then(json => this.setState({tasks: json.sort(function (a, b) {return a.id - b.id;})}))
   }
 
   componentDidMount(){
