@@ -33,7 +33,11 @@ class TaskList extends React.Component{
 
         <table class="ui fixed red table" id="TaskListTable">
           <thead>
-              {this.props.currentTask? <tr> <th class="one half wide" id="Complete">Status</th> <th class="two wide">Task</th><th class="one half wide">Edit</th> <th class="one half wide">Delete</th> <th class="one half wide">Save</th></tr> : <tr><th class="one half wide" id="Complete">Complete</th><th class="two wide">Task</th></tr>}
+              <tr>
+                <th class="one half wide" id="Complete">Status</th>
+                <th class="two wide">Task</th>
+                {this.props.currentTask ? <th class="one wide">Delete</th> : null}
+              </tr>
           </thead>
           <tbody>
             {task}
