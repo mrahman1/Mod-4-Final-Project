@@ -7,7 +7,7 @@ const DeleteCurrentTask = (props) => {
     props.clearCurrentTask()
   }
       return (
-        <td>
+        <td id="Delete-Icon">
           <i class="trash icon" onClick = {handleDeleteClick}></i>
         </td>
       )

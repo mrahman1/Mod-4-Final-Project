@@ -3,6 +3,7 @@ import Login from '../components/Login'
 import NewTask from '../components/NewTask'
 import TaskList from '../components/TaskList'
 import Navbar from '../components/Navbar'
+import Sort from '../components/Sort'
 
 class ToDoContainer extends React.Component{
   state = {
@@ -24,7 +25,7 @@ class ToDoContainer extends React.Component{
   getTasks = () => {
     fetch ('http://localhost:3000/tasks')
       .then(res => res.json())
-      .then(json => this.setState({tasks: json.sort(function (a, b) {return a.id - b.id;})}))
+      .then(json => this.setState({tasks: json.sort(function (a, b) {return b.id - a.id;})}))
   }
 
   componentDidMount(){
@@ -43,7 +44,7 @@ class ToDoContainer extends React.Component{
     }
     fetch('http://localhost:3000/tasks',options)
       .then(res => res.json())
-      .then(json => this.setState({tasks: [...this.state.tasks, json]}))
+      .then(json => this.setState({tasks: [json,...this.state.tasks]}))
   }
 
 //search & filter
@@ -109,28 +110,26 @@ class ToDoContainer extends React.Component{
     const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask}/> : null
 
     return(
-      <div>
-        <Navbar
-          handleSearch={this.handleSearch}
-          searchTerm={this.state.searchTerm}
-        />
-        <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
-        {displayNewTaskForm}
-
-          <div>
-              <TaskList
-                tasks={filteredTasks}
-                createTask={this.createTask}
-                deleteCurrentTask = {this.deleteCurrentTask}
-                editCurrentTask = {this.editCurrentTask}
-                currentTask = {this.state.currentTask}
-                setCurrentTask = {this.setCurrentTask}
-                displayEditCells = {this.displayEditCells}
-                clearCurrentTask = {this.clearCurrentTask}
-              />
-            }
+        <div>
+          <Navbar
+            handleSearch={this.handleSearch}
+            searchTerm={this.state.searchTerm}
+          />
+        <div>
+          <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
+          {displayNewTaskForm}
         </div>
-
+        <Sort/>
+          <TaskList
+            tasks={filteredTasks}
+            createTask={this.createTask}
+            deleteCurrentTask = {this.deleteCurrentTask}
+            editCurrentTask = {this.editCurrentTask}
+            currentTask = {this.state.currentTask}
+            setCurrentTask = {this.setCurrentTask}
+            displayEditCells = {this.displayEditCells}
+            clearCurrentTask = {this.clearCurrentTask}
+          />
       </div>
     )
   }

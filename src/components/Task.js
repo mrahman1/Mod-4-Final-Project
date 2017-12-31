@@ -23,13 +23,20 @@ class Task extends React.Component{
     }
   }
 
-    displayDeleteIcon = () => {
-      if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
-        return (<DeleteCurrentTask deleteCurrentTask = {this.props.deleteCurrentTask} currentTask = {this.props.currentTask} clearCurrentTask = {this.props.clearCurrentTask}/>)
-      } else {
-        return null
-      }}
+  displayDeleteIcon = () => {
+    if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
+      return (<DeleteCurrentTask deleteCurrentTask = {this.props.deleteCurrentTask} currentTask = {this.props.currentTask} clearCurrentTask = {this.props.clearCurrentTask}/>)
+    } else {
+      return null
+    }}
 
+  displayCancelIcon = () => {
+    if(this.props.currentTask && this.props.currentTask.id === this.props.task.id){
+      return (<td id="Cancel-Icon"><button class="ui red basic button" onClick={this.props.clearCurrentTask}>Cancel</button></td>)
+    } else {
+      return null
+    }
+  }
 
   render(){
     const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> : <i class="circle thin icon" ></i>
@@ -38,7 +45,10 @@ class Task extends React.Component{
       <tr>
         <td id= "Complete" onClick={this.handleCheckTaskClick}> {markCompleted} </td>
         {this.displayEditIcon()}
+        <td>{this.props.task.due_date}</td>
         {this.displayDeleteIcon()}
+        {this.displayCancelIcon()}
+        
       </tr>
     )
   }

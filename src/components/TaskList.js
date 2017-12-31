@@ -30,13 +30,16 @@ class TaskList extends React.Component{
     return(
 
       <div id="TaskList">
+      
 
         <table class="ui fixed red table" id="TaskListTable">
           <thead>
-              <tr>
+            <tr>
                 <th class="one half wide" id="Complete">Status</th>
                 <th class="two wide">Task</th>
-                {this.props.currentTask ? <th class="one wide">Delete</th> : null}
+                <th class="two wide">Due Date</th>
+                {this.props.currentTask ? <th class="one wide" id="Table-Delete-Header">Delete</th> : null}
+                {this.props.currentTask ? <th class="two wide" id="Table-Cancel-Header">Cancel</th> : null}
               </tr>
           </thead>
           <tbody>

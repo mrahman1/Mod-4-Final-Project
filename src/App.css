@@ -17,6 +17,22 @@
   text-align: center;
 }
 
+#Table-Delete-Header {
+  text-align:center;
+}
+
+#Table-Cancel-Header {
+  text-align:center;
+}
+
+#Delete-Icon {
+  text-align:center;
+}
+
+#Cancel-Icon {
+  text-align:center;
+}
+
 .App {
   text-align: center;
 }

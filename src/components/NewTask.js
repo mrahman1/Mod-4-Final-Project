@@ -3,6 +3,7 @@ import React from 'react'
 class NewTask extends React.Component{
   state = {
     item: "",
+    due_date: null,
     user_id: 1
   }
 
@@ -15,18 +16,34 @@ class NewTask extends React.Component{
     this.setState({item: event.target.value})
   }
 
+  handleDateChange = (event) => {
+    this.setState({due_date: event.target.value})
+  }
+
+
   render(){
     return(
         <div class="ui form" id="NewTask">
-          <form onSubmit={this.handleSubmitNewTask}>
+          <form onSubmit={this.handleSubmitNewTask} >
               <div class="ui input">
                 <input
                 type = "text"
+                size = "40"
                 placeholder = "Item"
                 value = {this.state.item}
                 onChange = {this.handleItemChange}
               />
-                <input type ="submit" />
+              </div>
+              <div class="ui input">
+                <input
+                  type = "date"
+                  placeholder = "Due Date"
+                  value = {this.state.due_date}
+                  onChange = {this.handleDateChange}
+                />
+              </div>
+                <div class="ui input">
+                  <input type ="submit" />
               </div>
           </form>
           <br/>
