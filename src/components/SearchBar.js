@@ -15,6 +15,7 @@ const handleChange = (event) => {
               type="text"
               placeholder="Search..."
               onChange={handleChange}
+              value={props.searchTerm}
               />
             {props.searchTerm ? <i class="search icon"></i> : null}
           </div>

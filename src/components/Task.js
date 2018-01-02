@@ -42,13 +42,15 @@ class Task extends React.Component{
     const markCompleted = this.state.complete ? <i class="check circle outline icon"></i> : <i class="circle thin icon" ></i>
 
     return (
+    
       <tr>
         <td id= "Complete" onClick={this.handleCheckTaskClick}> {markCompleted} </td>
         {this.displayEditIcon()}
         <td>{this.props.task.due_date}</td>
+
         {this.displayDeleteIcon()}
         {this.displayCancelIcon()}
-        
+
       </tr>
     )
   }

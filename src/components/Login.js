@@ -1,22 +1,27 @@
 import React from 'react'
 
+
 class Login extends React.Component{
 
   state = {
-    firstName: "",
-    email: "",
+    email: null,
     password: ""
-
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.getUser(this.state.firstName)
+    this.props.getUser("Mimi")
   }
 
-  handleChange = (event) => {
+  // handleSubmit = (event) => {
+  //   event.preventDefault()
+  //   this.props.getUser(this.state.firstName)
+  // }
+
+
+  handleEmailChange = (event) => {
     this.setState({
-      firstName: event.target.value
+      email: event.target.value
     })
   }
 
@@ -25,12 +30,7 @@ class Login extends React.Component{
       <div class="column" id="LoginForm"> Login Form
         <form onSubmit={this.handleSubmit}>
           <input
-            type = "text"
-            placeholder = "firstName"
-            onChange = {this.handleChange}
-            value = {this.state.firstName}
-          />
-          <input
+            onChange = {this.handleEmailChange}
             type = "text"
             placeholder = "email"
             value = {this.state.email}

@@ -1,9 +1,12 @@
 import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 import Login from '../components/Login'
 import NewTask from '../components/NewTask'
 import TaskList from '../components/TaskList'
 import Navbar from '../components/Navbar'
-import Sort from '../components/Sort'
 
 class ToDoContainer extends React.Component{
   state = {
@@ -12,20 +15,33 @@ class ToDoContainer extends React.Component{
     searchTerm: null,
     currentTask: null,
     newTask: false,
+    sortByDueDateDescending: false
   }
 
 //user apis
   getUser = (name) => {
     fetch(`http://localhost:3000/beef/${name}`)
       .then(res => res.json())
-      .then(json => this.setState({currentUser: json}))
+      .then(json => this.setState({
+        currentUser: json,
+        tasks: this.getTasks()
+      }))
   }
 
 //Tasks
   getTasks = () => {
     fetch ('http://localhost:3000/tasks')
       .then(res => res.json())
-      .then(json => this.setState({tasks: json.sort(function (a, b) {return b.id - a.id;})}))
+      .then(json => {
+        if(this.state.currentUser){
+          this.setState(
+          {tasks:
+              json.filter((task)=>{
+              return(task.user_id === this.state.currentUser.id)})
+              .sort(function (a, b) {return b.id - a.id;})
+          })
+        }
+      })
   }
 
   componentDidMount(){
@@ -51,6 +67,12 @@ class ToDoContainer extends React.Component{
   handleSearch = (newSearchTerm) => {
     this.setState({searchTerm: newSearchTerm})
   }
+
+   handleSortByDueDate= (array) => {
+      return (array.sort(function(task1,task2){
+        return new Date(task1.due_date) - new Date(task2.due_date)
+      }))
+    }
 
   handleFilter = () => {
     return this.state.tasks.filter(task=>{
@@ -103,34 +125,76 @@ class ToDoContainer extends React.Component{
     this.setState({newTask: !this.state.newTask})
   }
 
+  sortByDueDate = () => {
+    this.setState({
+      sortByDueDateDescending: !this.state.sortByDueDateAscending,
+    })
+  }
+
+  updateCurrentUser = (user) => {this.setState({currentUser: user })}
+
 
   render(){
     console.log(this.state)
-    let filteredTasks = this.state.searchTerm ? this.handleFilter() : this.state.tasks
-    const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask}/> : null
+    let sortedTasks = this.state.sortByDueDateDescending ? this.handleSortByDueDate(this.state.tasks) : this.state.tasks
+    let filteredTasks = this.state.searchTerm ? this.handleFilter() : sortedTasks
+    const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask} currentUser={this.state.currentUser}/> : null
+    let TaskListComponent=
+      <div>
+        <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
+        {displayNewTaskForm}
+        <TaskList
+          tasks={filteredTasks}
+          createTask={this.createTask}
+          deleteCurrentTask = {this.deleteCurrentTask}
+          editCurrentTask = {this.editCurrentTask}
+          currentTask = {this.state.currentTask}
+          setCurrentTask = {this.setCurrentTask}
+          displayEditCells = {this.displayEditCells}
+          clearCurrentTask = {this.clearCurrentTask}
+          sortByDueDate = {this.sortByDueDate}
+        />
+      </div>
+
 
     return(
+      <Router>
         <div>
           <Navbar
             handleSearch={this.handleSearch}
             searchTerm={this.state.searchTerm}
           />
-        <div>
-          <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
-          {displayNewTaskForm}
-        </div>
-        <Sort/>
-          <TaskList
-            tasks={filteredTasks}
-            createTask={this.createTask}
-            deleteCurrentTask = {this.deleteCurrentTask}
-            editCurrentTask = {this.editCurrentTask}
-            currentTask = {this.state.currentTask}
-            setCurrentTask = {this.setCurrentTask}
-            displayEditCells = {this.displayEditCells}
-            clearCurrentTask = {this.clearCurrentTask}
+          <Route
+            exact path="/"
+            render={() => {
+              return(
+              TaskListComponent
+            );
+          }}
           />
+
+          <Route
+            exact path="/tasks"
+            render={() => {
+              return(
+              TaskListComponent
+            );
+          }}
+          />
+
+        <Route
+          exact path="/login"
+          render={() => {
+            return(
+              <Login
+                getUser={this.getUser}
+              />
+          );
+        }}
+        />
+
       </div>
+      </Router>
     )
   }
 }

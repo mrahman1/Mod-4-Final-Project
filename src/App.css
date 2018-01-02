@@ -6,6 +6,14 @@
   text-align: center;
 }
 
+#login-button {
+  text-align: left;
+}
+
+#search-bar {
+  text-align: center;
+}
+
 #TaskListTable{
   table-layout: fixed;
   width: 50%;
