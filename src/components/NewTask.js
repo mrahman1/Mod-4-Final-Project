@@ -42,7 +42,7 @@ class NewTask extends React.Component{
                   onChange = {this.handleDateChange}
                 />
               </div>
-                <div class="ui input">
+              <div class="ui input">
                   <input type ="submit" />
               </div>
           </form>

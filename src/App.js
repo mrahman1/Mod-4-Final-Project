@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import ToDoContainer from './containers/ToDoContainer'
@@ -7,9 +8,11 @@ import ToDoContainer from './containers/ToDoContainer'
 class App extends Component {
   render() {
     return (
-      <div>
-        <ToDoContainer/>
-      </div>
+      <Router>
+        <div>
+          <ToDoContainer/>
+        </div>
+      </Router>
     );
   }
 }

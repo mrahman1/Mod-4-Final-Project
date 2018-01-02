@@ -6,20 +6,27 @@ import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
   return (
-    <div class="ui red inverted menu">
-        <Link to="/login" className="item">
-          <div className="ui primary button">Log In</div>
-        </Link>
-        <Link to="/tasks" className="item">
-            <div className="ui primary button">Tasks</div>
+      <div class="ui red three inverted menu">
+        <div class="left menu">
+          <Link to="/" className="item">
+            <button class="ui inverted grey button">{props.currentUser ? 'Logout' : 'Login'} </button>
           </Link>
-      <div class="ui category search item">
-        <SearchBar
-          id = "search-bar"
-          handleSearch = {props.handleSearch}
-          searchTerm = {props.searchTerm}
-        />
-      </div>
+
+          <Link to="/tasks" className="item">
+            <button class="ui inverted grey button">Tasks</button>
+          </Link>
+        </div>
+
+        <div class="menu" id="search">
+          <div class="ui category search item">
+            <SearchBar
+              id = "search-bar"
+              handleSearch = {props.handleSearch}
+              searchTerm = {props.searchTerm}
+            />
+          </div>
+        </div>
+
     </div>
   )
 }
