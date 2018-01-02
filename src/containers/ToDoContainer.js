@@ -22,10 +22,12 @@ class ToDoContainer extends React.Component{
   getUser = (name) => {
     fetch(`http://localhost:3000/beef/${name}`)
       .then(res => res.json())
-      .then(json => this.setState({
-        currentUser: json,
-        tasks: this.getTasks()
-      }))
+      .then(json =>
+        this.setState({
+          currentUser: json,
+          tasks: this.getTasks()
+        })
+    )
   }
 
 //Tasks
@@ -131,20 +133,19 @@ class ToDoContainer extends React.Component{
     })
   }
 
-  updateCurrentUser = (user) => {this.setState({currentUser: user })}
+  // updateCurrentUser = (user) => {this.setState({currentUser: user })}
 
+  displayNewTaskForm = () => {
+     return this.state.newTask ? <NewTask createTask={this.createTask} currentUser={this.state.currentUser}/> : null
+  }
 
-  render(){
-    console.log(this.state)
-    let sortedTasks = this.state.sortByDueDateDescending ? this.handleSortByDueDate(this.state.tasks) : this.state.tasks
-    let filteredTasks = this.state.searchTerm ? this.handleFilter() : sortedTasks
-    const displayNewTaskForm = this.state.newTask ? <NewTask createTask={this.createTask} currentUser={this.state.currentUser}/> : null
-    let TaskListComponent=
+  TaskListComponent=()=>{
+    return(
       <div>
         <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
-        {displayNewTaskForm}
+        {this.displayNewTaskForm()}
         <TaskList
-          tasks={filteredTasks}
+          tasks={this.filteredTasks()}
           createTask={this.createTask}
           deleteCurrentTask = {this.deleteCurrentTask}
           editCurrentTask = {this.editCurrentTask}
@@ -155,7 +156,15 @@ class ToDoContainer extends React.Component{
           sortByDueDate = {this.sortByDueDate}
         />
       </div>
+    )
+  }
 
+  sortedTasks = () => (this.state.sortByDueDateDescending ? this.handleSortByDueDate(this.state.tasks) : this.state.tasks)
+  filteredTasks = () => (this.state.searchTerm ? this.handleFilter() : this.sortedTasks())
+
+
+  render(){
+    console.log(this.state)
 
     return(
       <Router>
@@ -168,16 +177,16 @@ class ToDoContainer extends React.Component{
             exact path="/"
             render={() => {
               return(
-              TaskListComponent
-            );
-          }}
+                this.TaskListComponent()
+              );
+            }}
           />
 
           <Route
             exact path="/tasks"
             render={() => {
               return(
-              TaskListComponent
+                this.TaskListComponent()
             );
           }}
           />

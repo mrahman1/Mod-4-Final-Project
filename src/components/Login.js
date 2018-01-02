@@ -18,7 +18,6 @@ class Login extends React.Component{
   //   this.props.getUser(this.state.firstName)
   // }
 
-
   handleEmailChange = (event) => {
     this.setState({
       email: event.target.value

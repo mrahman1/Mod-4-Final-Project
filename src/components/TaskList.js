@@ -35,8 +35,6 @@ class TaskList extends React.Component{
     return(
 
       <div id="TaskList">
-
-
         <table class="ui fixed red table" id="TaskListTable">
           <thead>
             <tr>

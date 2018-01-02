@@ -4,7 +4,7 @@ class NewTask extends React.Component{
   state = {
     item: "",
     due_date: null,
-    user_id: this.props.currentUser.id
+    user_id: this.props.currentUser ? this.props.currentUser.id : 1
   }
 
   handleSubmitNewTask= (event) => {
