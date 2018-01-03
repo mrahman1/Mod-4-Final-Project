@@ -26,7 +26,7 @@ class Login extends React.Component{
   render(){
     return(
       <div>
-          <h3 id="login-header">Welcome to Todoist</h3>
+          <h3 id="login-header">Welcome to Todoish</h3>
           <h4 id="login-header"> Please Login </h4>
           <form
             class="ui form"

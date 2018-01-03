@@ -140,7 +140,7 @@ class ToDoContainer extends React.Component{
       if(this.state.currentUser){
         return(
           <div>
-            <h2 id="Today"> Today <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
+            <h2 id="Today"> Todoish <i class="plus icon" onClick={this.handleNewTaskClick}></i> </h2>
             {this.displayNewTaskForm()}
             <TaskList
               tasks={this.filteredTasks()}
