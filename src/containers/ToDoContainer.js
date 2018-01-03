@@ -92,16 +92,22 @@ class ToDoContainer extends React.Component{
     }
     fetch(`http://localhost:3000/tasks/${id}`,options)
       .then(res => res.json())
-      .then(this.getTasks)
-      // .then(json => this.setState({
-      //   tasks: this.updateTasks([...this.state.tasks],this.state.currentTask.id, json)
-      // }))
+      .then(json => {
+        const found = this.state.tasks.find(task => task.id === this.state.currentTask.id)
+        const index = this.state.tasks.indexOf(found)
+        const newTasks = this.state.tasks.slice()
+        newTasks[index] = json
+        this.setState({tasks: newTasks},
+          this.setState({currentTask: null})
+      )
+    })
   }
 
-  updateTasks = (array, currentValue, newValue) => {
-    array[array.indexOf(currentValue)] = newValue
-    return array
-  }
+
+  // updateTasks = (array, currentValue, newValue) => {
+  //   array[array.find(currentValue)] = newValue
+  //   return array
+  // }
 
   deleteCurrentTask = (item) => {
     let id = item.id;

@@ -9,8 +9,8 @@ class EditTaskForm extends React.Component {
 
   handleEditTaskSubmit = (event) => {
     event.preventDefault()
-    this.props.editCurrentTask(this.state),
-    this.props.clearCurrentTask()
+    this.props.editCurrentTask(this.state)
+    //this.props.clearCurrentTask()
   }
 
   handleItemChange = (event) => {
