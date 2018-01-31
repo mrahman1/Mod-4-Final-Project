@@ -21,7 +21,7 @@ class ToDoContainer extends React.Component{
       .then(res => res.json())
       .then(json =>
         this.setState({
-            currentUser: json,
+            currentUser: json
           },
           this.getTasks
       )
@@ -67,9 +67,9 @@ class ToDoContainer extends React.Component{
     this.setState({searchTerm: newSearchTerm})
   }
 
-   handleSortByDueDate= (array) => {
+  handleSortByDueDate= (array) => {
       return (array.sort(function(task1,task2){
-        return new Date(task1.due_date) - new Date(task2.due_date)
+        return new Date(task2.due_date) - new Date(task1.due_date)
       }))
     }
 
@@ -132,7 +132,7 @@ class ToDoContainer extends React.Component{
 
   sortByDueDate = () => {
     this.setState({
-      sortByDueDateDescending: !this.state.sortByDueDateAscending,
+      sortByDueDateDescending: !this.state.sortByDueDateDescending
     })
   }
 

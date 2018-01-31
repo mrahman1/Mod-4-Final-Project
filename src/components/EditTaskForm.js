@@ -23,6 +23,7 @@ class EditTaskForm extends React.Component {
       <td>
         <form onSubmit={this.handleEditTaskSubmit}>
           <input
+            id = "edit-input"
             type = "text"
             placeholder = "update task"
             value = {this.state.item}

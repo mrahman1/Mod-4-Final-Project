@@ -12,6 +12,10 @@
   margin: auto;
 }
 
+#edit-input{
+  width: 400px;
+}
+
 #login-header{
   text-align: center
 }
