@@ -4,7 +4,7 @@ Task Management web application that enables users to view, create, edit, and de
 See demo here: https://www.youtube.com/edit?o=U&video_id=n5iswnNfi6Y <br/>
 <br/>
 
-<img src = "./public/screenshot.png" style="width:200px"/>
+<img src = "./public/screenshot.png" style="width:10px"/>
 
 <h2> Getting Started </h2>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. <br/>
