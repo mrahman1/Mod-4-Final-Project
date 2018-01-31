@@ -6,7 +6,8 @@ Task Management web application that enables users to view, create, edit, and de
 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-<img src = "./screenshot.png"/>
+<img src = "./public/screenshot.png"/>
+
 <h2> Prerequisites </h2>
 <ul>
   <li> Front-End: https://github.com/mrahman1/Mod-4-Final-Project-Client </li>
