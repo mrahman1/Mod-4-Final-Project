@@ -1,16 +1,13 @@
-
-
 <h1> Todoish </h1>
 Task Management web application that enables users to view, create, edit, and delete Tasks along with search and sort Tasks. <br/>
 <br/>
 See demo here: https://www.youtube.com/edit?o=U&video_id=n5iswnNfi6Y <br/>
 <br/>
 
-<img src = "./public/screenshot.png" id="readme-screenshot"/>
+<img src = "./public/screenshot.png" style="width:200px"/>
 
 <h2> Getting Started </h2>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. <br/>
-
 
 <h2> Prerequisites </h2>
 <ul>
