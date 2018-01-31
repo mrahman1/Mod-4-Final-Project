@@ -1,66 +1,43 @@
 
 
 <h1> Todoish </h1>
-Task Management web application that enables users to view, create, edit, and delete Tasks along with search and sort Tasks.
-
-Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Task Management web application that enables users to view, create, edit, and delete Tasks along with search and sort Tasks. <br/>
+<br/>
+See demo here: https://www.youtube.com/edit?o=U&video_id=n5iswnNfi6Y <br/>
+<br/>
 
 <img src = "./public/screenshot.png"/>
+
+<h2> Getting Started </h2>
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. <br/>
+
 
 <h2> Prerequisites </h2>
 <ul>
   <li> Front-End: https://github.com/mrahman1/Mod-4-Final-Project-Client </li>
   <li> Back-End: https://github.com/mrahman1/Mod-4-Final-Project-Back-End </li>
-  <li> React </li>
-  <li> Rails </li>
-  <li> Postgres </li>
 </ul>
 
-Give examples
-Installing
-A step by step series of examples that tell you have to get a development env running
+<h2> Installing </h2>
+<ol>
+  <li> Clone back end repo </li>
+  <li> Clone front end repo </li>
+</ol>
 
-Say what the step will be
 
-Give the example
-And repeat
+<h2> Deployment </h2>
+<ol>
+  <li> Launch rails server </li>
+  <li> Launch front end on a separate server with Yarn install && start </li>
+</ol>
 
-until finished
-End with an example of getting some data out of the system or using it for a little demo
+<h2> Built With </h2>
+React - The Javascript library used to build the front-end <br/>
+Rails - The Ruby library used to build the back-end <br/>
+Semantic UI - The Theming guide used to style the front end <br/>
 
-Running the tests
-Explain how to run the automated tests for this system
+<h2> Authors </h2>
+Mimi Rahman
 
-Break down into end to end tests
-Explain what these tests test and why
-
-Give an example
-And coding style tests
-Explain what these tests test and why
-
-Give an example
-Deployment
-Add additional notes about how to deploy this on a live system
-
-Built With
-Dropwizard - The web framework used
-Maven - Dependency Management
-ROME - Used to generate RSS Feeds
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-
-Versioning
-We use SemVer for versioning. For the versions available, see the tags on this repository.
-
-Authors
-Billie Thompson - Initial work - PurpleBooth
-See also the list of contributors who participated in this project.
-
-License
+<h2> License </h2>
 This project is licensed under the MIT License - see the LICENSE.md file for details
-
-Acknowledgments
-Hat tip to anyone who's code was used
-Inspiration
-etc
