@@ -18,7 +18,6 @@ These instructions will get you a copy of the project up and running on your loc
   <li> Back-End: https://github.com/mrahman1/Mod-4-Final-Project-Back-End </li>
 </ul>
 
-
 <h2> Installing </h2>
 <ol>
   <li> Clone back end repo </li>
@@ -34,9 +33,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 <h2> Built With </h2> <br/>
 React - The Javascript library used to build the front-end <br/>
-Rails - The Ruby library used to build the back-end <br>
-Semantic UI - The Theming guide used to style the front end 
-
+Rails - The Ruby library used to build the back-end <br/>
+Semantic UI - The Theming guide used to style the front end <br/>
 
 <h2> Authors </h2> <br/>
 Mimi Rahman
